@@ -22,3 +22,12 @@ Power Query Editor (within Power BI) – For data transformation and cleaning
 DAX (Data Analysis Expressions) – For creating calculated columns, measures, and KPIs
 
 # Data Cleaning/Preparation 
+* I loaded the data
+* Checked for missing values
+* Check for duplicate rows to ensure each product entry was unique
+* I reviewed all 16 columns for missing data
+* Data cleaning and formatting
+* I changed data type by converting text-formatted numbers (e.g., price, discount, rating count) to proper numeric data
+* I splitted product name by reducing the text and deleted other text to make it look more consized
+* I deleted the uneccessary columns like about product, user ID, user name, review title, product link, img link,review content
+* I applied ctl A to format adn fit text to width
