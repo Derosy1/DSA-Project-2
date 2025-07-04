@@ -22,13 +22,27 @@ Power Query Editor (within Power BI) – For data transformation and cleaning
 DAX (Data Analysis Expressions) – For creating calculated columns, measures, and KPIs
 
 # Data Cleaning/Preparation 
-* I loaded the palmoria group dataset
-* I removed the exited employees
-* Removed employees with NULL department
-* chaked for missing gender values
+* I loaded the palmoria group bonus table and employee data 
+* I removed the exited employees by unchecking all blank salaries
+* Removed employees with NULL department by unchecking NUL
+* Removed ubrelated rating by unchecking them
+* Replaced missing genders byfilling ramdomely
 * Ensure correct data type
-* Removed duplicates
-* Rename columns where necessary
+* checked data quality all = 100%
+* Rename fact tanle as employee table
+
+Observed the supplimentary table is yet to be uploaded which is the rating table, thus i uploaded it from get data
+
+# Unpivot Values
+I highlighted all the rating columns, right clicked, unpivot all columns.
+Rename from attribute table to rating table and from vales table to bonus table
+
+# Combining the main table and supplimentary table
+I selected the main table, from Home i merged queries
+Using department as the merging columns
+Selected left outer join
+A bonus table was created, clicked to expand and unchecked others, selected bonus, ok
+Close & Apply
 
 # Exploratory Data Analysis
 
