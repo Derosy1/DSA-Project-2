@@ -29,4 +29,11 @@ DAX (Data Analysis Expressions) – For creating calculated columns, measures, a
 * Ensure correct data type
 * Removed duplicates
 * Rename columns where necessary
+
+# Exploratory Data Analysis
+
+
+
+
+# Analysis
   
