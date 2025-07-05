@@ -49,5 +49,11 @@ Close & Apply
 
 
 
+
 # Analysis
-  
+![Power BI 1](https://github.com/user-attachments/assets/7087d997-6741-4c08-ae51-b0c641893266)![Power Bi 2](https://github.com/user-attachments/assets/e70a0df2-33d5-4f4d-bed5-82f661a94f9b)
+
+
+  ![Power BI 3](https://github.com/user-attachments/assets/64019612-b646-4702-9ec9-19df8a63aef6)
+
+![PowerBi Dashboard](https://github.com/user-attachments/assets/fa80a57c-3c7f-40b7-9d97-2f7266d9955a)
