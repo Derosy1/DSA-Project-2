@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/93aa4cf7-6f76-45d9-beaf-567917a188d1)# DSA-Project 2
+
 My PowerBi project with DSA Incubator in Data Analysis
 # Project Overview: Gender Equality & Compensation Analysis for Palmoria Group
 The Palmoria Group, a manufacturing company in Nigeria, is facing reputational damage due to reported gender inequality across its three operational regions. To address this, the CEO has engaged an HR Analytics expert to analyze the company's employee data, focusing on gender distribution, performance ratings, salary structures, and compliance with the newly mandated $90,000 minimum wage. The project involves cleaning the dataset, identifying gender disparities by region and department, detecting gender-based pay gaps, visualizing salary bands, and calculating performance-based bonuses. The goal is to generate actionable insights that will help management promote fairness, improve gender equality, ensure regulatory compliance, and restore public trust ahead of planned business expansion.
