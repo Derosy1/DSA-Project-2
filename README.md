@@ -22,10 +22,11 @@ Power Query Editor (within Power BI) – For data transformation and cleaning
 DAX (Data Analysis Expressions) – For creating calculated columns, measures, and KPIs
 
 # Data Cleaning/Preparation 
-* I loaded the palmoria group bonus table and employee data 
+* I loaded the palmoria group bonus table and employee data
+* I assign a generic gender status to these employees
 * I removed the exited employees by unchecking all blank salaries
-* Removed employees with NULL department by unchecking NUL
-* Removed ubrelated rating by unchecking them
+* Removed departments with NULL department by unchecking NUL
+* Removed unrelated rating by unchecking them
 * Replaced missing genders byfilling ramdomely
 * Ensure correct data type
 * checked data quality all = 100%
@@ -47,21 +48,123 @@ Close & Apply
 # Exploratory Data Analysis
 
 
-Required:
-● Generally, there are two genders in the organization. However, some employees refused to disclose their gender. You would need to assign a generic gender status to these employees
-● Some employees are without a salary because they are no longer with the company. You will need to take those employees out
-● Lastly, some departments are indicated as “NULL”. These departments would also need to be taken out.
-Pointers from Mr Gamma
 1. What is the gender distribution in the organization? Distil to regions and departments
+
+### Gender Distribution (Overall)
+
+•	Visual: Donut chart 
+
+•	Axis: Gender
+
+•	Value: Count of Employee ID
+
+### Gender by Region
+
+•	Visual: Stacked Column Chart 
+
+•	Axis: Region
+
+•	Legend: Gender
+
+•	Value: Count of Employee ID
+
+### Gender by Department
+
+•	Visual: Stacked Bar Chart 
+
+•	Axis: Department
+
+•	Legend: Gender
+
+•	Value: Count of Employee ID
+
+### Matrix Table (Gender by Region and Department)
+
+•	Visual: Matrix
+
+•	Rows: Region
+
+•	Columns: Department
+
+•	Values: Count of Employee ID, with Gender as a slicer or small multiples
+
+### To create a measure for % Female:
+Dax
+
+CopyEdit
+
+% Female = 
+
+DIVIDE(
+
+    CALCULATE(COUNT(Employee[Employee ID]), Employee[Gender] = "Female"),
+    
+    COUNT(Employee[Employee ID])
+
 2. Show insights on ratings based on gender
+
+  
+  A. Bar Chart: Count of Ratings by Gender
+     
+•	Axis: Rating
+
+•	Legend: Gender
+
+•	Value: Count of Employee ID
+
+ Shows how many males vs. females received each rating.
+ 
+ B. Stacked Column Chart: % of Each Gender by Rating
+    
+•	Axis: Rating
+
+•	Legend: Gender
+
+•	Value: Count of Employees
+
+•	Turn on "Data label" and "Percent of total"
+
+Helps highlight whether a specific gender is more likely to receive a higher/lower rating.
+
+C. Matrix Table: Gender vs Rating
+
+•	Rows: Gender
+
+•	Columns: Rating
+
+•	Values: Count of Employee ID
+
+Offers a compact view of how ratings are distributed across genders.
+
+ D. Average Rating by Gender (if rating is numeric)
+ 
+You can create a DAX measure:
+
+dax
+
+Average Rating = AVERAGE(Employee[Rating])
+
+Then use:
+•	Visual: Bar
+
+•	Axis: Gender
+
+•	Value: Average Rating
+
+Shows if one gender receives consistently higher or lower ratings.
+
+
 3. Analyse the company’s salary structure. Identify if there is a gender pay gap. If there is, identify the department and regions that should be the focus of management
-4. A recent regulation was adopted which requires manufacturing companies to pay employees a minimum of $90,000
+
+
+   
+5. A recent regulation was adopted which requires manufacturing companies to pay employees a minimum of $90,000
 ● Does Palmoria meet this requirement?
 ● Show the pay distribution of employees grouped by a band of $10,000. For example:
 ● How many employees fall into a band of $10,000 – $20,000, $20,000 – $30,000, etc.?
 ● Also visualize this by regions
 Case Questions
-5. Mr Gamma thought to himself that since you were already working on the employee data, you could help out with allocating the annual bonus pay to employees based on the
+6. Mr Gamma thought to himself that since you were already working on the employee data, you could help out with allocating the annual bonus pay to employees based on the
 performance rating. He handed you another data set that contains rules for making bonus payments and asked you to:
 ● Calculate the amount to be paid as a bonus to individual employees
 ● Calculate the total amount to be paid to individual employees (salary inclusive of bonus)
