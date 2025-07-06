@@ -56,17 +56,17 @@ Close & Apply
 
 •	Axis: Gender
 
-•	Value: Count of Employee ID
+•	Value: Count of Employee name
 
-### Gender by Region
+### Gender by Location
 
 •	Visual: Stacked Column Chart 
 
-•	Axis: Region
+•	Axis: Locatin
 
 •	Legend: Gender
 
-•	Value: Count of Employee ID
+•	Value: Count of Employee name
 
 ### Gender by Department
 
@@ -76,17 +76,17 @@ Close & Apply
 
 •	Legend: Gender
 
-•	Value: Count of Employee ID
+•	Value: Count of Employee name
 
-### Matrix Table (Gender by Region and Department)
+### Matrix Table (Gender by Location and Department)
 
 •	Visual: Matrix
 
-•	Rows: Region
+•	Rows: Location
 
 •	Columns: Department
 
-•	Values: Count of Employee ID, with Gender as a slicer or small multiples
+•	Values: Count of Employee name, with Gender as a slicer or small multiples
 
 ### To create a measure for % Female:
 Dax
@@ -97,9 +97,9 @@ CopyEdit
 
 DIVIDE(
 
-    CALCULATE(COUNT(Employee[Employee ID]), Employee[Gender] = "Female"),
+    CALCULATE(COUNT(Employee[Employee name]), Employee[Gender] = "Female"),
     
-    COUNT(Employee[Employee ID])
+    COUNT(Employee[Employee name])
 
 2. Show insights on ratings based on gender
 
@@ -110,7 +110,7 @@ DIVIDE(
 
 •	Legend: Gender
 
-•	Value: Count of Employee ID
+•	Value: Count of Employee name
 
  Shows how many males vs. females received each rating.
  
@@ -132,7 +132,7 @@ C. Matrix Table: Gender vs Rating
 
 •	Columns: Rating
 
-•	Values: Count of Employee ID
+•	Values: Count of Employee name
 
 Offers a compact view of how ratings are distributed across genders.
 
@@ -184,9 +184,9 @@ C. Bar Chart: Average Salary by Gender
 
 Shows overall pay gap.
 
-D. Matrix Table: Average Salary by Gender + Department/Region
+D. Matrix Table: Average Salary by Gender + Department/Location
 
-•	Rows: Department or Region
+•	Rows: Department or Location
 
 •	Columns: Gender
 
@@ -223,7 +223,7 @@ FILTER(
     
 )
 
-A. Bar Chart: Number of Non-Compliant Employees by Region
+A. Bar Chart: Number of Non-Compliant Employees by Location
 
 •	Axis: Region
 
@@ -237,7 +237,7 @@ B. Bar/Column Chart: Non-Compliant Count by Gender
 
 C. Matrix or Table: Full List of Non-Compliant Employees
 
-•	Columns: Name, Region, Gender, Salary
+•	Columns: Name, Location, Gender, Salary
 
 •	Apply conditional formatting for easy flagging (e.g., red for < $90k)
 
@@ -251,7 +251,7 @@ CopyEdit
 
 NonCompliant Count = 
 
-CALCULATE(COUNT(Employee[Employee ID]), 
+CALCULATE(COUNT(Employee[Employee name]), 
 
     Employee[Department] = "Manufacturing" && Employee[Salary] < 90000
     
