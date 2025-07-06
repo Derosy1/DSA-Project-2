@@ -70,13 +70,9 @@ performance rating. He handed you another data set that contains rules for makin
 
 
 # Analysis
-![Dashboard 1](https://github.com/user-attachments/assets/7f1806b7-7061-4e7e-a59e-5e11d0b09f2c)
-![Dashboard 2](https://github.com/user-attachments/assets/cc0b640e-bcbe-4f8f-ad9e-e531920332b1)![Uploading PowerBi Dashboard.jpg…]()
+
+![Dashboard 1](https://github.com/user-attachments/assets/31d76444-4c2c-4a94-9dc1-9b92f5a3072f)
+![Dashboard 2](https://github.com/user-attachments/assets/89d39dfb-f8e2-4719-bc98-96c42448ae92)
+![PowerBi Dashboard](https://github.com/user-attachments/assets/ceca10cf-2663-4191-9bae-08a8deb15e93)
 
 
-
-
-  ![Power BI 3](https://github.com/user-attachments/assets/64019612-b646-4702-9ec9-19df8a63aef6)![Power BI 4](https://github.com/user-attachments/assets/ee02acfb-d301-4254-9868-959f42b336e1)
-
-
-![PowerBi Dashboard](https://github.com/user-attachments/assets/fa80a57c-3c7f-40b7-9d97-2f7266d9955a)
