@@ -156,13 +156,108 @@ Shows if one gender receives consistently higher or lower ratings.
 
 3. Analyse the company’s salary structure. Identify if there is a gender pay gap. If there is, identify the department and regions that should be the focus of management
 
+A. Average Salary by Gender (DAX)
+
+dax
+
+Avg Salary = AVERAGE(Employee[Salary])
+
+B. Gender Pay Gap (as % Difference)
+
+dax
+
+Gender Pay Gap % = 
+
+VAR FemaleAvg = CALCULATE([Avg Salary], Employee[Gender] = "Female")
+
+VAR MaleAvg = CALCULATE([Avg Salary], Employee[Gender] = "Male")
+
+RETURN
+
+DIVIDE(MaleAvg - FemaleAvg, MaleAvg)
+
+C. Bar Chart: Average Salary by Gender
+
+•	Axis: Gender
+
+•	Value: Avg Salary
+
+Shows overall pay gap.
+
+D. Matrix Table: Average Salary by Gender + Department/Region
+
+•	Rows: Department or Region
+
+•	Columns: Gender
+
+•	Values: Avg Salary
+
+ Compare salary across gender and function/location.
+
+E. Scatter or Column Chart: Gender Pay Gap by Department
+
+•	Axis: Department
+
+•	Value: Gender Pay Gap %
+
+ Helps identify which departments have the widest gap.
 
    
-5. A recent regulation was adopted which requires manufacturing companies to pay employees a minimum of $90,000
+4. A recent regulation was adopted which requires manufacturing companies to pay employees a minimum of $90,000
 ● Does Palmoria meet this requirement?
 ● Show the pay distribution of employees grouped by a band of $10,000. For example:
 ● How many employees fall into a band of $10,000 – $20,000, $20,000 – $30,000, etc.?
 ● Also visualize this by regions
+
+To filter Non-Compliant Records
+
+dax
+
+NonCompliant Employees = 
+
+FILTER(
+
+    Employee,
+    
+    Employee[Department] = "Manufacturing" && Employee[Salary] < 90000
+    
+)
+
+A. Bar Chart: Number of Non-Compliant Employees by Region
+
+•	Axis: Region
+
+•	Values: Count of employees
+
+•	Filter: Salary Compliance = "Below Minimum"
+
+B. Bar/Column Chart: Non-Compliant Count by Gender
+
+•	Show gender distribution of those below $90,000 in Manufacturing.
+
+C. Matrix or Table: Full List of Non-Compliant Employees
+
+•	Columns: Name, Region, Gender, Salary
+
+•	Apply conditional formatting for easy flagging (e.g., red for < $90k)
+
+D. KPI Card: Total Number of Non-Compliant Employees
+
+•	Value:
+
+dax
+
+CopyEdit
+
+NonCompliant Count = 
+
+CALCULATE(COUNT(Employee[Employee ID]), 
+
+    Employee[Department] = "Manufacturing" && Employee[Salary] < 90000
+    
+)
+
+
 Case Questions
 6. Mr Gamma thought to himself that since you were already working on the employee data, you could help out with allocating the annual bonus pay to employees based on the
 performance rating. He handed you another data set that contains rules for making bonus payments and asked you to:
