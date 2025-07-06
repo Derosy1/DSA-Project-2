@@ -50,11 +50,11 @@ Close & Apply
 
 1. What is the gender distribution in the organization? Distil to regions and departments
 
-### Gender Distribution (Overall)
+### Count of name by gender
 
 •	Visual: Donut chart 
 
-•	Axis: Gender
+•	Legend: Gender
 
 •	Value: Count of Employee name
 
@@ -62,208 +62,166 @@ Close & Apply
 
 •	Visual: Stacked Column Chart 
 
-•	Axis: Locatin
+•	X-Axis: Location
 
 •	Legend: Gender
 
-•	Value: Count of Employee name
+•	Y-Axis: Count of Employee name
 
-### Gender by Department
+### Count of name by department and gender
 
 •	Visual: Stacked Bar Chart 
 
-•	Axis: Department
+•	X-Axis: Department
 
 •	Legend: Gender
 
-•	Value: Count of Employee name
+•	Y-Axis: Count of Employee name
 
-### Matrix Table (Gender by Location and Department)
-
-•	Visual: Matrix
-
-•	Rows: Location
-
-•	Columns: Department
-
-•	Values: Count of Employee name, with Gender as a slicer or small multiples
 
 ### To create a measure for % Female:
-Dax
-
-CopyEdit
-
 % Female = 
-
 DIVIDE(
+    CALCULATE(COUNT(EmployeeData[Name]), EmployeeData[Gender] = "Female"),
+    COUNT(EmployeeData[Name])
+)*100
 
-    CALCULATE(COUNT(Employee[Employee name]), Employee[Gender] = "Female"),
-    
-    COUNT(Employee[Employee name])
 
 2. Show insights on ratings based on gender
 
-  
-  A. Bar Chart: Count of Ratings by Gender
+    A. Colunm Chart: Count of name by rating and gender
      
-•	Axis: Rating
+•	X-Axis: Rating
 
 •	Legend: Gender
 
-•	Value: Count of Employee name
+•	Y-Axis: Count of Employee name
 
- Shows how many males vs. females received each rating.
+
  
- B. Stacked Column Chart: % of Each Gender by Rating
+ B. Stacked Column Chart: % GT count of location by Rating and gender
     
-•	Axis: Rating
+•	X-Axis: Rating
 
 •	Legend: Gender
 
-•	Value: Count of Employees
+•	Y-Axis:  % GT count of location
 
-•	Turn on "Data label" and "Percent of total"
 
-Helps highlight whether a specific gender is more likely to receive a higher/lower rating.
+C. Matrix Table: Rating
 
-C. Matrix Table: Gender vs Rating
-
-•	Rows: Gender
-
-•	Columns: Rating
-
-•	Values: Count of Employee name
-
-Offers a compact view of how ratings are distributed across genders.
-
- D. Average Rating by Gender (if rating is numeric)
- 
-You can create a DAX measure:
-
-dax
-
-Average Rating = AVERAGE(Employee[Rating])
-
-Then use:
-•	Visual: Bar
-
-•	Axis: Gender
-
-•	Value: Average Rating
-
-Shows if one gender receives consistently higher or lower ratings.
+•	Field: Rating
 
 
 3. Analyse the company’s salary structure. Identify if there is a gender pay gap. If there is, identify the department and regions that should be the focus of management
 
-A. Average Salary by Gender (DAX)
-
-dax
-
-Avg Salary = AVERAGE(Employee[Salary])
-
-B. Gender Pay Gap (as % Difference)
-
-dax
-
-Gender Pay Gap % = 
-
-VAR FemaleAvg = CALCULATE([Avg Salary], Employee[Gender] = "Female")
-
-VAR MaleAvg = CALCULATE([Avg Salary], Employee[Gender] = "Male")
-
+  Gender Pay Gap % = 
+VAR FemaleAvg = CALCULATE([Avg Salary], EmployeeData[Gender] = "Female")
+VAR MaleAvg = CALCULATE([Avg Salary], EmployeeData[Gender] = "Male")
 RETURN
+DIVIDE(MaleAvg - FemaleAvg, MaleAvg) 
 
-DIVIDE(MaleAvg - FemaleAvg, MaleAvg)
+Avg Salary = AVERAGE(EmployeeData[Salary]) 
 
-C. Bar Chart: Average Salary by Gender
 
-•	Axis: Gender
+A. Average Salary by Gender 
 
-•	Value: Avg Salary
+•	X-Axis: Gender
 
-Shows overall pay gap.
+•	Legend: Gender
 
-D. Matrix Table: Average Salary by Gender + Department/Location
+•	Y-Axis:  Avg salary
 
-•	Rows: Department or Location
+
+B. Gender Pay Gap % depaertment and gender
+
+•	X-Axis: Department
+
+•	Legend: Gender
+
+•	Y-Axis:  Gender pay gap %
+
+
+C. Matrix Table: Average Salary by Gender and Department
+
+•	Rows: Department 
 
 •	Columns: Gender
 
 •	Values: Avg Salary
 
- Compare salary across gender and function/location.
 
-E. Scatter or Column Chart: Gender Pay Gap by Department
 
-•	Axis: Department
-
-•	Value: Gender Pay Gap %
-
- Helps identify which departments have the widest gap.
-
-   
+ 
 4. A recent regulation was adopted which requires manufacturing companies to pay employees a minimum of $90,000
 ● Does Palmoria meet this requirement?
 ● Show the pay distribution of employees grouped by a band of $10,000. For example:
 ● How many employees fall into a band of $10,000 – $20,000, $20,000 – $30,000, etc.?
 ● Also visualize this by regions
 
-To filter Non-Compliant Records
-
-dax
-
-NonCompliant Employees = 
-
-FILTER(
-
-    Employee,
-    
-    Employee[Department] = "Manufacturing" && Employee[Salary] < 90000
-    
-)
-
-A. Bar Chart: Number of Non-Compliant Employees by Location
-
-•	Axis: Region
-
-•	Values: Count of employees
-
-•	Filter: Salary Compliance = "Below Minimum"
-
-B. Bar/Column Chart: Non-Compliant Count by Gender
-
-•	Show gender distribution of those below $90,000 in Manufacturing.
-
-C. Matrix or Table: Full List of Non-Compliant Employees
-
-•	Columns: Name, Location, Gender, Salary
-
-•	Apply conditional formatting for easy flagging (e.g., red for < $90k)
-
-D. KPI Card: Total Number of Non-Compliant Employees
-
-•	Value:
-
-dax
-
-CopyEdit
-
-NonCompliant Count = 
-
-CALCULATE(COUNT(Employee[Employee name]), 
-
-    Employee[Department] = "Manufacturing" && Employee[Salary] < 90000
-    
+Salary Compliance = 
+IF(
+    EmployeeData[Department] = "Manufacturing" && EmployeeData[Salary] < 90000,
+    "Below Minimum",
+    "Compliant"
 )
 
 
-Case Questions
+A. Bar Chart: Count of salary compliance by location and gender
+
+•	Y-Axis: Location
+
+•	Legend: Gender
+
+•	X-Axis: Count of salary compliance
+
+
+B. Column Chart: Count of gender by salary compliance and gender
+
+•	Y-Axis: Salary compliance
+
+•	Legend: Gender
+
+•	X-Axis: Count of gender
+
+
+C. Table: Nane and department
+
+•	Columns: Name, department, Gender, Sum of Salary
+
+
+D. Field: Department
+
+•	Columns: Department
+
+
+E. % Female
+
+% Female = 
+DIVIDE(
+    CALCULATE(COUNT(EmployeeData[Name]), EmployeeData[Gender] = "Female"),
+    COUNT(EmployeeData[Name])
+)*100
+
+
+
+## Case Questions
 6. Mr Gamma thought to himself that since you were already working on the employee data, you could help out with allocating the annual bonus pay to employees based on the
 performance rating. He handed you another data set that contains rules for making bonus payments and asked you to:
 ● Calculate the amount to be paid as a bonus to individual employees
+
+Total Bonus Paid = SUM('EmployeeData'[Bonus Amount])
+
+
 ● Calculate the total amount to be paid to individual employees (salary inclusive of bonus)
+
+Total Pay = 
+'EmployeeData'[Salary] + 'EmployeeData'[Bonus Amount]
+
 ● Total amount to be paid out per region and company-wide
+
+Total Bonus by Region = 
+CALCULATE(SUM('EmployeeData'[Bonus Amount]), ALLEXCEPT('EmployeeData', 'EmployeeData'[Location]))
 
 
 
